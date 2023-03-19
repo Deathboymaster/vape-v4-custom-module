@@ -2877,7 +2877,7 @@ local yes = Players.LocalPlayer.Name
 local ChatTag = {}
 ChatTag[yes] =
     {
-        TagText = "EZHub Owner",
+        TagText = "EZHub Friend",
         TagColor = Color3.new(0.7, 0, 1),
     }
 
