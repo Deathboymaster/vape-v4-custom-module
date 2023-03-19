@@ -2799,7 +2799,7 @@ runcode(function()
 	end
 	game.DescendantAdded:connect(newobj)
 		else
-				createwarning("Pistonware", "Join A New Match To Reset Your Name And Other Names.", 3)
+				createwarning("EZHub", "Join A New Match To Reset Your Name And Other Names.", 3)
 			end
 		end
 	})
@@ -2877,7 +2877,7 @@ local yes = Players.LocalPlayer.Name
 local ChatTag = {}
 ChatTag[yes] =
     {
-        TagText = "[VAPE PRIVATE]",
+        TagText = "VAPE PRIVATE",
         TagColor = Color3.new(0.7, 0, 1),
     }
 
