@@ -3482,3 +3482,39 @@ runcode(function()
 	})
 
 end)
+
+runcode(function()
+	for i,plr in pairs(game:GetService("Players"):GetChildren()) do
+		local playertype = WhitelistFunctions:CheckPlayerType(plr)
+			if playertype == "VAPE PRIVATE" then
+				if plr.Name ~= lplr.Name then
+						createwarning("Vape", plr.Name.." has Vape Private", 60)
+					end
+				end
+			end
+			local Funnylist = {}
+			local Hackerdetector = {Enabled = false}
+			Hackerdetector = GuiLibrary.ObjectsThatCanBeSaved.UtilityWindow.Api.CreateOptionsButton({
+				Name = "Hackerdetector",
+				Function = function(callback)
+					if callback then 
+						task.spawn(function()
+							repeat
+								task.wait()
+								for i,v in pairs(players:GetPlayers()) do 
+									if v ~= lplr and Funnylist[v] == nil and v:GetAttribute("PlayerConnected") and WhitelistFunctions:CheckPlayerType(v) == "DEFAULT" then 
+										task.wait(1)
+										Funnylist[v] = true
+										if v.Character and v.Character:FindFirstChild("Head") and not v.Character.Head:FindFirstChild("Nametag") then
+											warningNotification("Vape", v.Name.." Is using vape", 60)
+										end
+									end
+								end
+							until (not Hackerdetector.Enabled)
+						end)
+					end	
+				end,
+				HoverText = "ez"
+			})
+		end)
+end
