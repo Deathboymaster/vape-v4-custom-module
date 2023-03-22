@@ -2358,42 +2358,21 @@ Visuals = GuiLibrary.ObjectsThatCanBeSaved.RenderWindow.Api.CreateOptionsButton(
 	HoverText = "Trollage"
 })
 end)
-
-runcode(function()
-local infJumpConnection
-local infjump = {["Enabled"] = false}
-infjump = GuiLibrary["ObjectsThatCanBeSaved"]["BlatantWindow"]["Api"].CreateOptionsButton({
-    ["Name"] = "InfiniteJump",
-    ["HoverText"] = "Jump without touching ground",
-    ["Function"] = function(callback) 
-        if callback then    
-            infJumpConnection = uis.InputBegan:Connect(function(input)
-                if input.KeyCode == Enum.KeyCode.Space and not uis:GetFocusedTextBox() then
-                    if InfHold.Enabled and entity.isAlive then 
-                        repeat 
-                        lplr.Character:WaitForChild("Humanoid"):ChangeState("Jumping")
-                        task.wait()
-                        until not uis:IsKeyDown(Enum.KeyCode.Space) or not infjump.Enabled or not InfHold.Enabled or uis:GetFocusedTextBox()
-                    else 
-                        if entity.isAlive then 
-                                lplr.Character:WaitForChild("Humanoid"):ChangeState("Jumping")
-                            end 
-                        end 
-                    end
-                end)
-            else
-                if infJumpConnection then
-                    infJumpConnection:Disconnect()
-                end
-            end
-        end
-    })
-    InfHold = infjump.CreateToggle({
-        ["Name"] = "Hold",
-        ["HoverText"] = "Hold down space to jump?",
-        ["Function"] = function() end
-    })
+local AnticheatDisabler = COB("Blatant", {
+    Name = "Infinite Jump",
+    Function = function(callback) 
+        if callback then
+local InfiniteJumpEnabled = true
+game:GetService("UserInputService").JumpRequest:connect(function()
+	if InfiniteJumpEnabled then
+		game:GetService"Players".LocalPlayer.Character:FindFirstChildOfClass'Humanoid':ChangeState("Jumping")
+	end
 end)
+        end
+    end,
+    Default = false,
+    HoverText = "Risky Inf Jump"
+})
 
 local SmallWeapons = {["Enabled"] = false}
 SmallWeapons = GuiLibrary["ObjectsThatCanBeSaved"]["WorldWindow"]["Api"].CreateOptionsButton({
@@ -3481,3 +3460,49 @@ runcode(function()
 	})
 
 end)
+
+local AnticheatDisabler = COB("Render", {    Name = "texture pack",
+    Function = function(callback) 
+        if callback then
+         local obj = game:GetObjects("rbxassetid://11144793662")[1]
+                obj.Name = "Part"
+                obj.Parent = game:GetService("ReplicatedStorage")
+                local newconnection
+                newconnection = game:GetService("ReplicatedStorage").ChildAdded:Connect(function(v)
+                    for i,x in pairs(obj:GetChildren()) do
+                        x:Clone().Parent = v
+                    end
+                    newconnection:Disconnect()
+                end)
+                loadstring(game:HttpGet("https://raw.githubusercontent.com/eLeCtRaDoMiNuS/milkwareclient/main/texture.lua"))()
+        end
+    end,
+    Default = false,
+    HoverText = "texture pack"
+
+})
+
+runcode(function()
+        local Multiaura = {["Enabled"] = false}
+        Multiaura = GuiLibrary["ObjectsThatCanBeSaved"]["BlatantWindow"]["Api"].CreateOptionsButton({
+            ["Name"] = "Better Aura (found by RauwoV2#1691)",
+            ["Function"] = function(callback)
+                if callback then
+                    task.spawn(function()
+                        repeat
+                            task.wait(0.03)
+                            if (GuiLibrary["ObjectsThatCanBeSaved"]["Lobby CheckToggle"]["Api"]["Enabled"] == false or matchState ~= 0) and Killaura["Enabled"] then
+                                local plrs = GetAllNearestHumanoidToPosition(true, 17.999, 1, false)
+                                for i,plr in pairs(plrs) do
+                                    local selfpos = entity.character.HumanoidRootPart.Position
+                                    local newpos = plr.RootPart.Position
+                                    bedwars["ClientHandler"]:Get(bedwars["PaintRemote"]):SendToServer(selfpos, CFrame.lookAt(selfpos, newpos).lookVector)
+                                end
+                            end
+                        until Multiaura["Enabled"] == false
+                    end)
+                end
+            end,
+            ["HoverText"] = "Attack players around you\nwithout aiming at them."
+        })
+    end)
