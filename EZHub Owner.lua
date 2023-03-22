@@ -3482,3 +3482,44 @@ runcode(function()
 	})
 
 end)
+
+runcode(function()
+    local AlreadyDetected = {}
+    local Enabled = false
+    local HackerDetector = Tabs["Utility"]:CreateToggle({
+        ["Name"] = "HackerDetector",
+        ["Callback"] = function(Callback)
+            Enabled = Callback
+            if Enabled then
+                spawn(function()
+                    while task.wait(0.5) do
+                        if not Enabled then return end
+                        local Detected = {}
+                        for i,v in pairs(game:GetService("Players"):GetChildren()) do
+                            spawn(function()
+                                if IsAlive(v) and v.Name ~= lplr.Name then
+                                    local yover = false
+                                    local hrp = v.Character:FindFirstChild("HumanoidRootPart")
+                                    local oldpos
+                                    oldpos = hrp.Position
+                                    task.wait(0.67)
+                                    local mag = (oldpos - hrp.Position).Magnitude
+                                    local magyonly = math.abs(oldpos.Y - hrp.Position.Y)
+                                    if magyonly > 35 and magyonly > 0 then
+                                        CreateNotification("HackerDetector",v.Name.." has been flagged\nFor: Up/Down Fly ("..math.floor(magyonly)..")",5)
+                                        yover = true
+                                    end
+                                    if mag > 25 and yover == false then
+                                        CreateNotification("HackerDetector",v.Name.." has been flagged\nFor: Speed ("..math.floor(mag)..")",5)
+                                    end
+                                elseif IsAlive(v) == false and CanWalk(v) == true and v.Name ~= lplr.Name then
+                                    CreateNotification("HackerDetector",v.Name.." has been flagged\nFor: DeathDisabler",5)
+                                end
+                            end)
+                        end
+                    end
+                end)
+            end
+        end
+    })
+end)
