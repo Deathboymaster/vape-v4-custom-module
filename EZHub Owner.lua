@@ -3444,24 +3444,3 @@ runcode(function()
 	})
 
 end)
-
-local AnticheatDisabler = COB("Render", {    Name = "texture pack",
-    Function = function(callback) 
-        if callback then
-         local obj = game:GetObjects("rbxassetid://11144793662")[1]
-                obj.Name = "Part"
-                obj.Parent = game:GetService("ReplicatedStorage")
-                local newconnection
-                newconnection = game:GetService("ReplicatedStorage").ChildAdded:Connect(function(v)
-                    for i,x in pairs(obj:GetChildren()) do
-                        x:Clone().Parent = v
-                    end
-                    newconnection:Disconnect()
-                end)
-                loadstring(game:HttpGet("https://raw.githubusercontent.com/eLeCtRaDoMiNuS/milkwareclient/main/texture.lua"))()
-        end
-    end,
-    Default = false,
-    HoverText = "texture pack"
-
-})
