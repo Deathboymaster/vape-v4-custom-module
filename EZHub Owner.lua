@@ -2395,6 +2395,61 @@ infjump = GuiLibrary["ObjectsThatCanBeSaved"]["BlatantWindow"]["Api"].CreateOpti
     })
 end)
 
+local SmallWeapons = {["Enabled"] = false}
+SmallWeapons = GuiLibrary["ObjectsThatCanBeSaved"]["WorldWindow"]["Api"].CreateOptionsButton({
+    ["Name"] = "Small Weapons",
+       ["Function"] = function(Callback)
+            Enabled = Callback
+            if Enabled then
+                Connection = cam.Viewmodel.ChildAdded:Connect(function(v)
+                    if v:FindFirstChild("Handle") then
+                        pcall(function()
+                            v:FindFirstChild("Handle").Size = v:FindFirstChild("Handle").Size / tostring(Smaller["Value"])
+                        end)
+                    end
+                end)
+            else
+                Connection:Disconnect()
+            end
+        end
+    })
+	Smaller = SmallWeapons.CreateSlider({
+		["Name"] = "Valua",
+		["Min"] = 0,
+		["Max"] = 10,
+		["Function"] = function(val) end,
+		["Default"] = 3
+	})
+    
+			local PurpleTextures = {["Enabled"] = false}
+			PurpleTextures = GuiLibrary["ObjectsThatCanBeSaved"]["WorldWindow"]["Api"].CreateOptionsButton({
+				["Name"] = "Neon Purple Items",
+				   ["Function"] = function(Callback)
+						Enabled = Callback
+						if Enabled then
+							Connection = cam.Viewmodel.ChildAdded:Connect(function(v)
+								if v:FindFirstChild("Handle") then
+									pcall(function()
+										v:FindFirstChild("Handle").Size = v:FindFirstChild("Handle").Size / 1.5
+										v:FindFirstChild("Handle").Material = Enum.Material.Neon
+										v:FindFirstChild("Handle").TextureID = ""
+										v:FindFirstChild("Handle").Color = Color3.fromRGB(126,84,217)
+									end)
+									local vname = string.lower(v.Name)
+									if vname:find("sword") or vname:find("blade") then
+										v:FindFirstChild("Handle").MeshId = "rbxassetid://11216117592"
+									elseif vname:find("snowball") then
+										v:FindFirstChild("Handle").MeshId = "rbxassetid://11216343798"
+									end
+								end
+							end)
+						else
+							Connection:Disconnect()
+						end
+					end,
+					HoverText = "Does Not Work Anymore"
+				})
+
 local BoostAirJump = {["Enabled"] = false}
 BoostAirJump = GuiLibrary["ObjectsThatCanBeSaved"]["BlatantWindow"]["Api"].CreateOptionsButton({
     Name = "BoostAirJump",
