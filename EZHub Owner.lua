@@ -2357,22 +2357,6 @@ Visuals = GuiLibrary.ObjectsThatCanBeSaved.RenderWindow.Api.CreateOptionsButton(
 	end, 
 	HoverText = "Trollage"
 })
-end)
-local AnticheatDisabler = COB("Blatant", {
-    Name = "Infinite Jump",
-    Function = function(callback) 
-        if callback then
-local InfiniteJumpEnabled = true
-game:GetService("UserInputService").JumpRequest:connect(function()
-	if InfiniteJumpEnabled then
-		game:GetService"Players".LocalPlayer.Character:FindFirstChildOfClass'Humanoid':ChangeState("Jumping")
-	end
-end)
-        end
-    end,
-    Default = false,
-    HoverText = "Risky Inf Jump"
-})
 
 local SmallWeapons = {["Enabled"] = false}
 SmallWeapons = GuiLibrary["ObjectsThatCanBeSaved"]["WorldWindow"]["Api"].CreateOptionsButton({
