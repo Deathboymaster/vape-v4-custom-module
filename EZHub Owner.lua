@@ -3482,3 +3482,77 @@ runcode(function()
 	})
 
 end)
+
+SnoopyTxtPack = GuiLibrary.ObjectsThatCanBeSaved.WorldWindow.Api.CreateOptionsButton({
+    ["Name"] = "Textures",
+    ["Function"] = function(callback)
+        if callback then
+			Enabled = callback
+            if Enabled then
+                Connection = cam.Viewmodel.ChildAdded:Connect(function(v)
+                    if v:FindFirstChild("Handle") then
+                        pcall(function()
+                            v:FindFirstChild("Handle").Size = v:FindFirstChild("Handle").Size / 1.5
+                            v:FindFirstChild("Handle").Material = Enum.Material.SmoothPlastic
+                            v:FindFirstChild("Handle").TextureID = "rbxassetid://12736332126"
+                            v:FindFirstChild("Handle").Color = Color3.fromRGB(61, 21, 133)
+                        end)
+                        local vname = string.lower(v.Name)
+                        if vname:find("sword") or vname:find("blade") then
+                            v:FindFirstChild("Handle").MeshId = "rbxassetid://12741430220"
+                        elseif vname:find("pick") then
+                            v:FindFirstChild("Handle").MeshId = "rbxassetid://12342364179"
+                        end
+                    end
+                end)
+            else
+                Connection:Disconnect()
+			end
+        end
+    end
+})
+
+InfiniteJump = GuiLibrary.ObjectsThatCanBeSaved.BlatantWindow.Api.CreateOptionsButton({
+    ["Name"] = "InfiniteJump",
+    ["Function"] = function(callback)
+        if callback then
+			local InfiniteJumpEnabled = true
+			game:GetService("UserInputService").JumpRequest:connect(function()
+				if InfiniteJumpEnabled then
+					game:GetService"Players".LocalPlayer.Character:FindFirstChildOfClass'Humanoid':ChangeState("Jumping")
+				end
+			end)
+        else
+			InfiniteJumpEnabled = false
+		end
+    end
+})
+
+CustomSpaceSky = GuiLibrary.ObjectsThatCanBeSaved.WorldWindow.Api.CreateOptionsButton({
+    ["Name"] = "SpaceSky",
+    ["Function"] = function(callback)
+        if callback then
+			game.Lighting.Sky.SkyboxBk = "http://www.roblox.com/asset/?id=159454299"
+            game.Lighting.Sky.SkyboxDn = "http://www.roblox.com/asset/?id=159454296"
+            game.Lighting.Sky.SkyboxFt = "http://www.roblox.com/asset/?id=159454293"
+            game.Lighting.Sky.SkyboxLf = "http://www.roblox.com/asset/?id=159454286"
+            game.Lighting.Sky.SkyboxRt = "http://www.roblox.com/asset/?id=159454300"
+            game.Lighting.Sky.SkyboxUp = "http://www.roblox.com/asset/?id=159454288"
+            game.Lighting.FogColor = Color3.new(236, 88, 241)
+            game.Lighting.FogEnd = "200"
+            game.Lighting.FogStart = "0"
+            game.Lighting.Ambient = Color3.new(0.5, 0, 1)
+        else
+			game.Lighting.Sky.SkyboxBk = "http://www.roblox.com/asset/?id=7018684000"
+            game.Lighting.Sky.SkyboxDn = "http://www.roblox.com/asset/?id=6334928194"
+            game.Lighting.Sky.SkyboxFt = "http://www.roblox.com/asset/?id=7018684000"
+            game.Lighting.Sky.SkyboxLf = "http://www.roblox.com/asset/?id=7018684000"
+            game.Lighting.Sky.SkyboxRt = "http://www.roblox.com/asset/?id=7018684000"
+            game.Lighting.Sky.SkyboxUp = "http://www.roblox.com/asset/?id=7018689553"
+            game.Lighting.FogColor = Color3.new(1, 1, 1)
+            game.Lighting.FogEnd = "10000"
+            game.Lighting.FogStart = "0"
+            game.Lighting.Ambient = Color3.new(0, 0, 0)
+        end
+    end
+})
