@@ -3449,7 +3449,7 @@ runcode(function()
 end)
 
 SnoopyTxtPack = GuiLibrary.ObjectsThatCanBeSaved.WorldWindow.Api.CreateOptionsButton({
-    ["Name"] = "Textures",
+    ["Name"] = "SnoopyTxtPack",
     ["Function"] = function(callback)
         if callback then
 			Enabled = callback
