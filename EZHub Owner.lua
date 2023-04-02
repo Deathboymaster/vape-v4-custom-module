@@ -3447,22 +3447,3 @@ runcode(function()
 	})
 
 end)
-
-local RbHotbar = LIB("Render", {
-    Name = "Hotbar Colors",
-    Function = function(callback) 
-        if callback then
-		function SmokeRB(X) return math.acos(math.cos(X*math.pi))/math.pi end
-
-counter = 0
-
-while wait(0.1)do
- game.Players.LocalPlayer.PlayerGui.hotbar['1'].HotbarHealthbarContainer.HealthbarProgressWrapper['1'].BackgroundColor3 = Color3.fromHSV(SmokeRB(counter),1,1)
- 
- counter = counter + 0.01
-end
-        end
-    end,
-    Default = false,
-    HoverText = "Rainbow Hotbar idk."
-})
