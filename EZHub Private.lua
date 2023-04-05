@@ -2359,41 +2359,6 @@ Visuals = GuiLibrary.ObjectsThatCanBeSaved.RenderWindow.Api.CreateOptionsButton(
 })
 end)
 
-runcode(function()
-local infJumpConnection
-local infjump = {["Enabled"] = false}
-infjump = GuiLibrary["ObjectsThatCanBeSaved"]["BlatantWindow"]["Api"].CreateOptionsButton({
-    ["Name"] = "InfiniteJump",
-    ["HoverText"] = "Jump without touching ground",
-    ["Function"] = function(callback) 
-        if callback then    
-            infJumpConnection = uis.InputBegan:Connect(function(input)
-                if input.KeyCode == Enum.KeyCode.Space and not uis:GetFocusedTextBox() then
-                    if InfHold.Enabled and entity.isAlive then 
-                        repeat 
-                        lplr.Character:WaitForChild("Humanoid"):ChangeState("Jumping")
-                        task.wait()
-                        until not uis:IsKeyDown(Enum.KeyCode.Space) or not infjump.Enabled or not InfHold.Enabled or uis:GetFocusedTextBox()
-                    else 
-                        if entity.isAlive then 
-                                lplr.Character:WaitForChild("Humanoid"):ChangeState("Jumping")
-                            end 
-                        end 
-                    end
-                end)
-            else
-                if infJumpConnection then
-                    infJumpConnection:Disconnect()
-                end
-            end
-        end
-    })
-    InfHold = infjump.CreateToggle({
-        ["Name"] = "Hold",
-        ["HoverText"] = "Hold down space to jump?",
-        ["Function"] = function() end
-    })
-end)
 
 local SmallWeapons = {["Enabled"] = false}
 SmallWeapons = GuiLibrary["ObjectsThatCanBeSaved"]["WorldWindow"]["Api"].CreateOptionsButton({
