@@ -1,6 +1,6 @@
 loadstring(game:HttpGet("https://raw.githubusercontent.com/7GrandDadPGN/VapeV4ForRoblox/"..readfile("vape/commithash.txt").."/CustomModules/6872274481.lua", true))()
 loadstring(game:HttpGet("https://raw.githubusercontent.com/0primeSkidsALot/vape-plus-plus/main/script/keystrokes"))()
-loadstring(game:HttpGet("https://raw.githubusercontent.com/Deathboymaster/vape-v4-custom-module/main/LogoTest.lua"))()
+loadstring(game:HttpGet("https://raw.githubusercontent.com/Deathboymaster/vape-v4-custom-module/main/Logo.lua"))()
 local GuiLibrary = shared.GuiLibrary
 local players = game:GetService("Players")
 local textservice = game:GetService("TextService")
