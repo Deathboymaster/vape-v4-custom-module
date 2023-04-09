@@ -17,7 +17,7 @@ end
 Gui.ResetOnSpawn = false
 Gui.Enabled = false
 ProtectUI(Gui)
-Gui.Name = 'PixelWare'
+Gui.Name = 'blackazura'
 EditGui.ResetOnSpawn = false
 EditGui.Enabled = false
 ProtectUI(EditGui)
