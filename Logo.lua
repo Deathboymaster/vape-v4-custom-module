@@ -17,7 +17,7 @@ end
 Gui.ResetOnSpawn = false
 Gui.Enabled = false
 ProtectUI(Gui)
-Gui.Name = 'blackazura'
+Gui.Name = 'PixelWare'
 EditGui.ResetOnSpawn = false
 EditGui.Enabled = false
 ProtectUI(EditGui)
@@ -46,7 +46,7 @@ local mainmark = Instance.new("TextLabel")
 mainmark.TextStrokeTransparency = 0.75
 mainmark.BackgroundTransparency = 1
 mainmark.Size = UDim2.new(0, 250, 0, 85)
-mainmark.Text = "PrimeWare"
+mainmark.Text = "PixelWare"
 mainmark.TextColor3 = Color3.fromRGB(255, 255, 255)
 mainmark.TextScaled = true
 mainmark.Font = Enum.Font.GothamMedium
@@ -55,7 +55,7 @@ local markgrandient = Instance.new("UIGradient")
 markgrandient.Color = ColorSequence.new{ColorSequenceKeypoint.new(0.00, Color3.fromRGB(180, 80, 255)), ColorSequenceKeypoint.new(1.00, Color3.fromRGB(230, 120, 228))}
 markgrandient.Parent = mainmark
 local uidmark = mainmark:Clone()
-uidmark.Text = "version BETA v1,1 | UID: 0"
+uidmark.Text = "Version 1.0"
 uidmark.Size = UDim2.new(0, 250, 0, 20)
 uidmark.Position = UDim2.new(0, 0, 0.871, 0)
 uidmark.Parent = mainmark
@@ -65,7 +65,7 @@ infolabel.BackgroundColor3 = Color3.fromRGB(20, 20, 20)
 infolabel.BorderSizePixel = 0
 infolabel.Size = UDim2.new(0, 1223, 0, 60)
 infolabel.Font = Enum.Font.GothamMedium
-infolabel.Text = "[PrimeWare]\Modded and rebranded by 0prime"
+infolabel.Text = "Made By EZHub Owner"
 infolabel.TextColor3 = Color3.fromRGB(255, 255, 255)
 infolabel.Position = UDim2.new(0.126, 0, 0.881, 0)
 infolabel.TextSize = 28
